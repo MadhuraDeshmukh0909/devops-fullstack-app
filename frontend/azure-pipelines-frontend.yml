@@ -20,11 +20,20 @@ steps:
   inputs:
     command: 'install'
     workingDir: 'frontend'
+  displayName: 'NPM Install'
 
 - task: Npm@1
   inputs:
     command: 'custom'
     workingDir: 'frontend'
     customCommand: 'run build'
+  displayName: 'NPM Build'
 
-
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/frontend/build'  # Path to the build folder
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend_build.zip'  # Output zip file path
+    replaceExistingArchive: true
+  displayName: 'Archive Frontend Build'
