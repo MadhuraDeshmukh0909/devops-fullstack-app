@@ -1,0 +1,38 @@
+# Go
+# Build your Go project.
+# Add steps that test, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/go
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: |
+    echo "Installing Go..."
+    sudo apt update
+    sudo apt install golang-go -y
+    go version
+  displayName: 'Install Go'
+
+- checkout: self
+
+- script: |
+    echo "Downloading dependencies..."
+    cd backend
+    go mod download
+  displayName: 'Download Dependencies'
+
+- script: |
+    echo "Building Go application..."
+    cd backend
+    go build -o app
+  displayName: 'Build Go Application'
+
+- script: |
+    echo "Running tests..."
+    cd backend
+    go test ./...
+  displayName: 'Run Tests'
