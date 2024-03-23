@@ -1,6 +1,11 @@
 
 trigger:
-- main
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - frontend/*
 
 pool:
   vmImage: ubuntu-latest
@@ -22,5 +27,4 @@ steps:
     workingDir: 'frontend'
     customCommand: 'run build'
 
-- script: ls -R
-  workingDirectory: 'frontend'
+
