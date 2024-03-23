@@ -22,5 +22,5 @@ steps:
     workingDir: 'frontend'
     customCommand: 'run build'
 
-- script: ls -r
+- script: ls -R
   workingDirectory: 'frontend'
