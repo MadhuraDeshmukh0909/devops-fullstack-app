@@ -5,7 +5,7 @@ FROM node:alpine as build
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the container
-COPY frontend/package*.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
